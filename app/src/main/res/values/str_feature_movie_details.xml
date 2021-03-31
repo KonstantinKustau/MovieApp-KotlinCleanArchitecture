@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movie_details_name">Name</string>
+    <string name="movie_details_plot">Plot</string>
+    <string name="movie_details_genre">Genre</string>
+    <string name="movie_details_actors">Actors</string>
+    <string name="movie_details_year">Year</string>
+    <string name="movie_details_type">Type</string>
+    <string name="movie_details_runtime">Runtime</string>
+</resources>
