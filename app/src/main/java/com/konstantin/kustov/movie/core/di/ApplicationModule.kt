@@ -23,7 +23,7 @@ class ApplicationModule(private val application: AndroidApplication) {
     fun provideRetrofit(): Retrofit {
         //TODO change key
         return Retrofit.Builder()
-                .baseUrl("http://www.omdbapi.com/?apikey=8653ceea")
+                .baseUrl("http://www.omdbapi.com/?apikey=" + BuildConfig.API_KEY)
                 .client(createClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
