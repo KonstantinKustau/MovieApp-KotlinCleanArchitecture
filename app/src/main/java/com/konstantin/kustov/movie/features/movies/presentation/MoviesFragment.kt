@@ -3,7 +3,6 @@ package com.konstantin.kustov.movie.features.movies.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import com.konstantin.kustov.movie.R
 import com.konstantin.kustov.movie.core.exception.Failure
 import com.konstantin.kustov.movie.core.extension.observe
@@ -18,11 +17,13 @@ class MoviesFragment : BaseFragment() {
     companion object {
 
         private const val PARAM_SEARCH_LINE = "param_search_line"
+        private const val PARAM_SEARCH_TYPE = "param_search_type"
 
-        fun forMovies(searchLine: String?): MoviesFragment {
+        fun forMovies(searchLine: String?, searchType: String?): MoviesFragment {
             val moviesFragment = MoviesFragment()
             val arguments = Bundle()
             arguments.putString(PARAM_SEARCH_LINE, searchLine)
+            arguments.putString(PARAM_SEARCH_TYPE, searchType)
             moviesFragment.arguments = arguments
             return moviesFragment
         }
@@ -58,8 +59,9 @@ class MoviesFragment : BaseFragment() {
     private fun loadMovies() {
         showProgress()
         val search: String? = arguments?.getString(PARAM_SEARCH_LINE)
-        if (search != null) {
-            moviesViewModel.loadMovies(search)
+        val type: String? = arguments?.getString(PARAM_SEARCH_TYPE)
+        if (search != null && type != null) {
+            moviesViewModel.loadMovies(search, type)
         } else {
             hideProgress()
         }

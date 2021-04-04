@@ -3,6 +3,8 @@ package com.konstantin.kustov.movie.core.di
 import android.content.Context
 import com.konstantin.kustov.movie.AndroidApplication
 import com.konstantin.kustov.movie.BuildConfig
+import com.konstantin.kustov.movie.features.search.data.SearchRepositoryImpl
+import com.konstantin.kustov.movie.features.search.domain.SearchRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -23,19 +25,24 @@ class ApplicationModule(private val application: AndroidApplication) {
     fun provideRetrofit(): Retrofit {
         //TODO change key
         return Retrofit.Builder()
-                .baseUrl("http://www.omdbapi.com/?apikey=" + BuildConfig.API_KEY)
-                .client(createClient())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+            .baseUrl("http://www.omdbapi.com/?apikey=" + BuildConfig.API_KEY)
+            .client(createClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {
-            val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
+            val loggingInterceptor =
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
             okHttpClientBuilder.addInterceptor(loggingInterceptor)
         }
         return okHttpClientBuilder.build()
     }
+
+    @Provides
+    @Singleton
+    fun provideSearchRepository(dataSource: SearchRepositoryImpl): SearchRepository = dataSource
 
 }

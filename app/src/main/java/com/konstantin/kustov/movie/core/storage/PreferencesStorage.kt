@@ -23,16 +23,16 @@ class PreferencesStorage
         return getSharedPreferences().edit()
     }
 
-    fun setSearchName(name: String) {
-        getEditor().putString(searchName, name).apply()
+    fun setSearchName(name: String): Boolean {
+        return getEditor().putString(searchName, name).commit()
     }
 
     fun getSearchName(): String? {
         return getSharedPreferences().getString(searchName, "")
     }
 
-    fun setSearchType(type: String) {
-        getEditor().putString(searchType, type).apply()
+    fun setSearchType(type: String): Boolean {
+        return getEditor().putString(searchType, type).commit()
     }
 
     fun getSearchType(): String? {

@@ -10,7 +10,7 @@ class MoviesViewModel
 
     var movies: MutableLiveData<List<MovieModel>> = MutableLiveData()
 
-    fun loadMovies(searchLine: String) {
+    fun loadMovies(searchLine: String, searchType: String) {
     }
 
     private fun handleMovies(deals: MovieModel) {

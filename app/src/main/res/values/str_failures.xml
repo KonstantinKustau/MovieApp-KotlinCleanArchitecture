@@ -4,6 +4,8 @@
     <string name="failure_network_connection">No Network Connection.</string>
     <string name="failure_server_error">Server Error</string>
     <string name="failure_unknown_error">Unknown Error</string>
+    <string name="failure_saving_options_error">Options could not be saved</string>
+    <string name="failure_search_is_empty_error">Fill in the search box</string>
     <string name="failure_movie_details_unavailable">Movie Details Unavailable</string>
     <string name="failure_movies_unavailable">Movies Unavailable</string>
 </resources>

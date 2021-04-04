@@ -17,17 +17,20 @@ class Navigator
     lateinit var preferencesStorage: PreferencesStorage
 
     fun showFirstScreen(context: Context) {
-        when (val searchLine: String? = preferencesStorage.getSearchName()) {
-            "", null -> showSearch(context)
-            else -> showMovies(context, searchLine)
+        val searchLine: String? = preferencesStorage.getSearchName()
+        val searchType: String? = preferencesStorage.getSearchType()
+        if (searchLine == "" || searchLine == null || searchType == "" || searchType == null) {
+            showSearch(context)
+        } else {
+            showMovies(context, searchLine, searchType)
         }
     }
 
     fun showSearch(context: Context) =
         context.startActivity(SearchActivity.callingIntent(context))
 
-    fun showMovies(context: Context, searchName: String) =
-        context.startActivity(MoviesActivity.callingIntent(context, searchName))
+    fun showMovies(context: Context, searchName: String, searchType: String) =
+        context.startActivity(MoviesActivity.callingIntent(context, searchName, searchType))
 
     fun showMovieDetails(context: Context, imdbID: String) =
         context.startActivity(MovieDetailsActivity.callingIntent(context, imdbID))
