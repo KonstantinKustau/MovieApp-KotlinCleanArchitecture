@@ -19,7 +19,7 @@ class Navigator
     fun showFirstScreen(context: Context) {
         val searchLine: String? = preferencesStorage.getSearchName()
         val searchType: String? = preferencesStorage.getSearchType()
-        if (searchLine == "" || searchLine == null || searchType == "" || searchType == null) {
+        if (searchLine == "" || searchLine == null || searchType == null) {
             showSearch(context)
         } else {
             showMovies(context, searchLine, searchType)

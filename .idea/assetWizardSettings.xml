@@ -318,7 +318,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/wifi_off/baseline_wifi_off_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/search/baseline_search_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -328,7 +328,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_wifi_off_24" />
+                            <entry key="outputName" value="ic_search_24" />
                           </map>
                         </option>
                       </PersistentState>

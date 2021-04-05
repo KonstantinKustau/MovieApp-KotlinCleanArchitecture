@@ -82,6 +82,6 @@ class MovieDetailsFragment : BaseFragment() {
 
     private fun renderFailure(@StringRes message: Int) {
         hideProgress()
-        notifyWithAction(message, R.string.failure_action_refresh, ::loadMovieDetails)
+//        notifyWithAction(message, R.string.failure_action_refresh, ::loadMovieDetails)
     }
 }

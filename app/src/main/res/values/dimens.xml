@@ -4,6 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="empty_view_size">76dp</dimen>
     <dimen name="search_button_height">56dp</dimen>
+    <dimen name="item_movie_image_height">180dp</dimen>
+    <dimen name="item_movie_text_height">48dp</dimen>
 
     <dimen name="title_text_size">20sp</dimen>
     <dimen name="normal_text_size">16sp</dimen>

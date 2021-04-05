@@ -20,7 +20,7 @@ import javax.inject.Inject
 class SearchFragment : BaseFragment() {
 
     companion object {
-        const val SEARCH_TYPE_MOVIES: String = "movies"
+        const val SEARCH_TYPE_MOVIES: String = "movie"
         const val SEARCH_TYPE_SERIES: String = "series"
     }
 

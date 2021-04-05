@@ -8,4 +8,5 @@
     <string name="failure_search_is_empty_error">Fill in the search box</string>
     <string name="failure_movie_details_unavailable">Movie Details Unavailable</string>
     <string name="failure_movies_unavailable">Movies Unavailable</string>
+    <string name="failure_movies_is_empty">Movies is empty</string>
 </resources>

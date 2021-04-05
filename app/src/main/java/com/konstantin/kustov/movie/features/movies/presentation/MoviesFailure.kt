@@ -4,4 +4,5 @@ import com.konstantin.kustov.movie.core.exception.Failure
 
 class MoviesFailure {
     class MoviesNotAvailable : Failure.FeatureFailure()
+    class MoviesIsEmpty : Failure.FeatureFailure()
 }
