@@ -1,11 +1,10 @@
-package com.konstantin.kustov.movie.core.platform
+package com.konstantin.kustov.movie.features.movies.data
 
 import com.konstantin.kustov.movie.core.exception.Failure
 import com.konstantin.kustov.movie.core.functional.Either
-import com.konstantin.kustov.movie.features.movies.data.Movies
 import retrofit2.Call
 
-abstract class BaseNetwork {
+abstract class MovieNetwork {
     internal fun <T, R> request(
         call: Call<T>,
         transform: (T) -> R,

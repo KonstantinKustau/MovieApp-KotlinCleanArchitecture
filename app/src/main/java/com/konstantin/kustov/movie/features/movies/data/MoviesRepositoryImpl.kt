@@ -12,7 +12,7 @@ class MoviesRepositoryImpl
 @Inject constructor(
     private val networkHandler: NetworkHandler,
     private val service: MoviesService
-) : MoviesRepository, BaseNetwork() {
+) : MoviesRepository, MovieNetwork() {
 
     override fun getMovies(
         searchLine: String,
