@@ -58,17 +58,13 @@ class MovieDetailsFragment : BaseFragment() {
     }
 
     private fun loadMovieDetails() {
-        showProgress()
         val imdbId: String? = arguments?.getString(PARAM_IMDB_ID)
         if (imdbId != null) {
             movieDetailsViewModel.loadMovieDetails(imdbId)
-        } else {
-            hideProgress()
         }
     }
 
     private fun renderMovieDetails(movieDetails: MovieDetailsModel?) {
-        hideProgress()
     }
 
     private fun handleFailure(failure: Failure?) {
@@ -81,7 +77,6 @@ class MovieDetailsFragment : BaseFragment() {
     }
 
     private fun renderFailure(@StringRes message: Int) {
-        hideProgress()
-//        notifyWithAction(message, R.string.failure_action_refresh, ::loadMovieDetails)
+        notify(message)
     }
 }

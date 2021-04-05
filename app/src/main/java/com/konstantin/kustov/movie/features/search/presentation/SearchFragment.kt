@@ -16,7 +16,6 @@ import com.konstantin.kustov.movie.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.fragment_search.*
 import javax.inject.Inject
 
-
 class SearchFragment : BaseFragment() {
 
     companion object {
@@ -73,7 +72,6 @@ class SearchFragment : BaseFragment() {
     }
 
     private fun saveSearchOptions() {
-        showProgress()
         val searchOptions = SearchOptionsModel(searchLine, searchType)
         searchViewModel.updateSearchOptions(searchOptions)
     }
@@ -88,7 +86,6 @@ class SearchFragment : BaseFragment() {
         } else {
             handleFailure(Failure.UnknownError)
         }
-        hideProgress()
     }
 
     private fun handleFailure(failure: Failure?) {
@@ -100,7 +97,6 @@ class SearchFragment : BaseFragment() {
     }
 
     private fun renderFailure(@StringRes message: Int) {
-        hideProgress()
         notify(message)
     }
 }

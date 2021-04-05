@@ -88,13 +88,10 @@ class MoviesFragment : BaseFragment() {
         movieRecyclerView.visible()
         emptyInternetView.invisible()
         emptySearchView.invisible()
-        showProgress()
         val search: String? = arguments?.getString(PARAM_SEARCH_LINE)
         val type: String? = arguments?.getString(PARAM_SEARCH_TYPE)
         if (search != null && type != null) {
             moviesViewModel.loadMovies(search, type)
-        } else {
-            hideProgress()
         }
     }
 
@@ -108,7 +105,6 @@ class MoviesFragment : BaseFragment() {
         } else {
             handleFailure(MoviesFailure.MoviesNotAvailable())
         }
-        hideProgress()
     }
 
     private fun handleFailure(failure: Failure?) {
@@ -137,7 +133,6 @@ class MoviesFragment : BaseFragment() {
     }
 
     private fun renderFailure(@StringRes message: Int) {
-        hideProgress()
         notify(message)
         movieRecyclerView.invisible()
     }
