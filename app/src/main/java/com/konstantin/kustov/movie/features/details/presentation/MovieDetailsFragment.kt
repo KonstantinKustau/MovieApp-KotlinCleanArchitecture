@@ -11,7 +11,6 @@ import com.konstantin.kustov.movie.core.extension.*
 import com.konstantin.kustov.movie.core.navigation.Navigator
 import com.konstantin.kustov.movie.core.platform.BaseFragment
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.layout_empty_internet.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import javax.inject.Inject

@@ -19,7 +19,7 @@ class MovieDetailsRepositoryImpl
             true -> request(
                 service.getMovieDetails(imdb_id),
                 { details -> details.toDetails() },
-                Details("N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A")
+                Details.empty
             )
             false, null -> Either.Left(
                 Failure.NetworkConnection

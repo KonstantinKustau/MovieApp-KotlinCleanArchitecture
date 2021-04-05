@@ -1,19 +1,24 @@
 package com.konstantin.kustov.movie.features.movies.data
 
+import com.konstantin.kustov.movie.core.extension.empty
 import com.konstantin.kustov.movie.features.movies.domain.MovieEntity
 
 data class Movies(
-    private val Response: String,
-    internal val Search: List<Search>,
-    private val totalResults: String
-)
+    val Response: String,
+    val Search: List<Search>,
+    val totalResults: String
+) {
+    companion object {
+        val empty = Movies(String.empty(), emptyList(), String.empty())
+    }
+}
 
 data class Search(
-    private val Poster: String,
-    private val Title: String,
-    private val Type: String,
-    private val Year: String,
-    private val imdbID: String
+    val Poster: String,
+    val Title: String,
+    val Type: String,
+    val Year: String,
+    val imdbID: String
 ) {
     fun toMovie() = MovieEntity(
         Title,
