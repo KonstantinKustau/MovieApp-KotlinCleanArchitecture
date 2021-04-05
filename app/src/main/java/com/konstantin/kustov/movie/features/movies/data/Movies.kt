@@ -3,17 +3,17 @@ package com.konstantin.kustov.movie.features.movies.data
 import com.konstantin.kustov.movie.features.movies.domain.MovieEntity
 
 data class Movies(
-    val Response: String,
-    val Search: List<Search>,
-    val totalResults: String
+    private val Response: String,
+    internal val Search: List<Search>,
+    private val totalResults: String
 )
 
 data class Search(
-    val Poster: String,
-    val Title: String,
-    val Type: String,
-    val Year: String,
-    val imdbID: String
+    private val Poster: String,
+    private val Title: String,
+    private val Type: String,
+    private val Year: String,
+    private val imdbID: String
 ) {
     fun toMovie() = MovieEntity(
         Title,

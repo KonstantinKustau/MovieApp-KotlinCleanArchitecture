@@ -81,18 +81,19 @@ class MoviesFragment : BaseFragment() {
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         movieRecyclerView.adapter = movieAdapter
         movieAdapter.clickListener = {
+            navigator.showMovieDetails(appContext, it.imdbId)
         }
     }
 
     private fun loadMovies() {
-        movieRecyclerView.visible()
-        emptyInternetView.invisible()
-        emptySearchView.invisible()
         val search: String? = arguments?.getString(PARAM_SEARCH_LINE)
         val type: String? = arguments?.getString(PARAM_SEARCH_TYPE)
         if (search != null && type != null) {
             moviesViewModel.loadMovies(search, type)
         }
+        movieRecyclerView.visible()
+        emptyInternetView.invisible()
+        emptySearchView.invisible()
     }
 
     private fun renderMovies(movies: List<MovieView>?) {
@@ -110,11 +111,11 @@ class MoviesFragment : BaseFragment() {
     private fun handleFailure(failure: Failure?) {
         when (failure) {
             is Failure.NetworkConnection -> {
-                renderFailure(R.string.failure_network_connection)
+                renderFailureWithAction(R.string.failure_network_connection)
                 emptyInternetView.visible()
             }
             is Failure.ServerError -> {
-                renderFailure(R.string.failure_server_error)
+                renderFailureWithAction(R.string.failure_server_error)
                 emptyInternetView.visible()
             }
             is MoviesFailure.MoviesNotAvailable -> {
@@ -134,6 +135,11 @@ class MoviesFragment : BaseFragment() {
 
     private fun renderFailure(@StringRes message: Int) {
         notify(message)
+        movieRecyclerView.invisible()
+    }
+
+    private fun renderFailureWithAction(@StringRes message: Int) {
+        notifyWithAction(message, R.string.failure_action_refresh, ::loadMovies)
         movieRecyclerView.invisible()
     }
 }

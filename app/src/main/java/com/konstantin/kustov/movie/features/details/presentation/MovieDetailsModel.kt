@@ -1,7 +1,7 @@
 package com.konstantin.kustov.movie.features.details.presentation
 
 data class MovieDetailsModel(
-        val name: String,
+        val title: String,
         val plot: String,
         val genre: String,
         val actors: String,

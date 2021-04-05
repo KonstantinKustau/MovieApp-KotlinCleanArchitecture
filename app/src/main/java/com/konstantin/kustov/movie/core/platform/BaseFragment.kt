@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.konstantin.kustov.movie.AndroidApplication
 import com.konstantin.kustov.movie.core.di.ApplicationComponent
+import com.konstantin.kustov.movie.core.extension.appContext
+import com.konstantin.kustov.movie.R.color
 import com.konstantin.kustov.movie.core.extension.viewContainer
 import javax.inject.Inject
 
@@ -40,5 +43,16 @@ abstract class BaseFragment : Fragment() {
 
     internal fun notify(@StringRes message: Int) =
         Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
+
+    internal fun notifyWithAction(
+        @StringRes message: Int,
+        @StringRes actionText: Int,
+        action: () -> Any
+    ) {
+        val snackBar = Snackbar.make(viewContainer, message, Snackbar.LENGTH_INDEFINITE)
+        snackBar.setAction(actionText) { _ -> action.invoke() }
+        snackBar.setActionTextColor(ContextCompat.getColor(appContext, color.white))
+        snackBar.show()
+    }
 
 }

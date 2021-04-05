@@ -3,6 +3,8 @@ package com.konstantin.kustov.movie.core.di
 import android.content.Context
 import com.konstantin.kustov.movie.AndroidApplication
 import com.konstantin.kustov.movie.BuildConfig
+import com.konstantin.kustov.movie.features.details.data.MovieDetailsRepositoryImpl
+import com.konstantin.kustov.movie.features.details.domain.MovieDetailsRepository
 import com.konstantin.kustov.movie.features.search.data.SearchRepositoryImpl
 import com.konstantin.kustov.movie.features.search.domain.SearchRepository
 import com.konstantin.kustov.movie.features.movies.data.MoviesRepositoryImpl
@@ -49,5 +51,10 @@ class ApplicationModule(private val application: AndroidApplication) {
     @Provides
     @Singleton
     fun provideMovieRepository(dataSource: MoviesRepositoryImpl): MoviesRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun provideMovieDetailsRepository(dataSource: MovieDetailsRepositoryImpl): MovieDetailsRepository =
+        dataSource
 
 }
