@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.konstantin.kustov.movie.R.id
 import com.konstantin.kustov.movie.R.layout
-import com.konstantin.kustov.movie.core.extension.inTransaction
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.toolbar.*
+import com.konstantin.kustov.movie.core.extension.inTransaction
 
-//TODO check all platforms
+@AndroidEntryPoint
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

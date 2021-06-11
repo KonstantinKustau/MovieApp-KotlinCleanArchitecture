@@ -3,12 +3,13 @@ package com.konstantin.kustov.movie.core.storage
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class PreferencesStorage
-@Inject constructor(private val context: Context) {
+@Inject constructor(@ApplicationContext private val context: Context) {
 
     private val key = "preferences_storage"
 

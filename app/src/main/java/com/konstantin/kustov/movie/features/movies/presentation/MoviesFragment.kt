@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.konstantin.kustov.movie.R
 import com.konstantin.kustov.movie.core.exception.Failure
@@ -14,11 +15,13 @@ import com.konstantin.kustov.movie.core.navigation.Navigator
 import com.konstantin.kustov.movie.core.platform.BaseFragment
 import com.konstantin.kustov.movie.features.movies.presentation.recyclerview.MovieAdapter
 import com.konstantin.kustov.movie.features.movies.presentation.recyclerview.MovieView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.layout_empty_internet.*
 import kotlinx.android.synthetic.main.layout_empty_search.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MoviesFragment : BaseFragment() {
 
     companion object {
@@ -42,16 +45,15 @@ class MoviesFragment : BaseFragment() {
     @Inject
     lateinit var movieAdapter: MovieAdapter
 
-    private lateinit var moviesViewModel: MoviesViewModel
+    private val moviesViewModel: MoviesViewModel by viewModels()
 
     override fun layoutId() = R.layout.fragment_movies
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appComponent.inject(this)
         setHasOptionsMenu(true)
 
-        moviesViewModel = viewModel(viewModelFactory) {
+        with(moviesViewModel) {
             observe(movies, ::renderMovies)
             failure(failure, ::handleFailure)
         }

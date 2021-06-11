@@ -1,7 +1,5 @@
 package com.konstantin.kustov.movie.core.di
 
-import android.content.Context
-import com.konstantin.kustov.movie.AndroidApplication
 import com.konstantin.kustov.movie.BuildConfig
 import com.konstantin.kustov.movie.features.details.data.MovieDetailsRepositoryImpl
 import com.konstantin.kustov.movie.features.details.domain.MovieDetailsRepository
@@ -11,6 +9,8 @@ import com.konstantin.kustov.movie.features.movies.data.MoviesRepositoryImpl
 import com.konstantin.kustov.movie.features.movies.domain.MoviesRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,11 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(private val application: AndroidApplication) {
-
-    @Provides
-    @Singleton
-    fun provideApplicationContext(): Context = application
+@InstallIn(SingletonComponent::class)
+class ApplicationModule {
 
     @Provides
     @Singleton
@@ -43,18 +40,5 @@ class ApplicationModule(private val application: AndroidApplication) {
         }
         return okHttpClientBuilder.build()
     }
-
-    @Provides
-    @Singleton
-    fun provideSearchRepository(dataSource: SearchRepositoryImpl): SearchRepository = dataSource
-
-    @Provides
-    @Singleton
-    fun provideMovieRepository(dataSource: MoviesRepositoryImpl): MoviesRepository = dataSource
-
-    @Provides
-    @Singleton
-    fun provideMovieDetailsRepository(dataSource: MovieDetailsRepositoryImpl): MovieDetailsRepository =
-        dataSource
 
 }

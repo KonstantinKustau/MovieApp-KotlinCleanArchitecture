@@ -15,7 +15,7 @@ class MovieDetailsRepositoryImpl
 ) : MovieDetailsRepository, BaseNetwork() {
 
     override fun getMovieDetails(imdb_id: String): Either<Failure, MovieDetailsEntity> {
-        return when (networkHandler.isConnected) {
+        return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 service.getMovieDetails(imdb_id),
                 { details -> details.toDetails() },

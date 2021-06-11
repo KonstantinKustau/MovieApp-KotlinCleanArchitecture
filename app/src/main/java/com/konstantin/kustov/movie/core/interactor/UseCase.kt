@@ -2,10 +2,7 @@ package com.konstantin.kustov.movie.core.interactor
 
 import com.konstantin.kustov.movie.core.exception.Failure
 import com.konstantin.kustov.movie.core.functional.Either
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
@@ -19,9 +16,17 @@ abstract class UseCase<out Type, in Params> where Type : Any {
 
     abstract suspend fun run(params: Params): Either<Failure, Type>
 
-    operator fun invoke(params: Params, onResult: (Either<Failure, Type>) -> Unit = {}) {
-        val job = GlobalScope.async(Dispatchers.IO) { run(params) }
-        GlobalScope.launch(Dispatchers.Main) { onResult(job.await()) }
+    operator fun invoke(
+        params: Params,
+        scope: CoroutineScope = GlobalScope,
+        onResult: (Either<Failure, Type>) -> Unit = {}
+    ) {
+        scope.launch(Dispatchers.Main) {
+            val deferred = async(Dispatchers.IO) {
+                run(params)
+            }
+            onResult(deferred.await())
+        }
     }
 
     class None

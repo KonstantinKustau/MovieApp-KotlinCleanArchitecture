@@ -5,16 +5,19 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import com.konstantin.kustov.movie.R
 import com.konstantin.kustov.movie.core.exception.Failure
 import com.konstantin.kustov.movie.core.extension.*
 import com.konstantin.kustov.movie.core.navigation.Navigator
 import com.konstantin.kustov.movie.core.platform.BaseFragment
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_empty_internet.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MovieDetailsFragment : BaseFragment() {
 
     companion object {
@@ -33,16 +36,15 @@ class MovieDetailsFragment : BaseFragment() {
     @Inject
     lateinit var navigator: Navigator
 
-    private lateinit var movieDetailsViewModel: MovieDetailsViewModel
+    private val movieDetailsViewModel: MovieDetailsViewModel by viewModels()
 
     override fun layoutId() = R.layout.fragment_movie_details
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appComponent.inject(this)
         setHasOptionsMenu(true)
 
-        movieDetailsViewModel = viewModel(viewModelFactory) {
+        with(movieDetailsViewModel) {
             observe(movieDetails, ::renderMovieDetails)
             failure(failure, ::handleFailure)
         }

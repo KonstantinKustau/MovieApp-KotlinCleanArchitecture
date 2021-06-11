@@ -3,8 +3,10 @@ package com.konstantin.kustov.movie.features.search.presentation
 import androidx.lifecycle.MutableLiveData
 import com.konstantin.kustov.movie.core.platform.BaseViewModel
 import com.konstantin.kustov.movie.features.search.domain.SetSearchOptions
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class SearchViewModel
 @Inject constructor(
     private val setSearchOptions: SetSearchOptions

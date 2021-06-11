@@ -17,7 +17,7 @@ class MoviesRepositoryImpl
         searchLine: String,
         searchType: String
     ): Either<Failure, List<MovieEntity>> {
-        return when (networkHandler.isConnected) {
+        return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 service.getMovies(searchLine, searchType),
                 { it.Search.map { movie -> movie.toMovie() } },

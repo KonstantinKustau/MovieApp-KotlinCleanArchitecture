@@ -5,8 +5,10 @@ import com.konstantin.kustov.movie.core.platform.BaseViewModel
 import com.konstantin.kustov.movie.features.movies.domain.GetMovies
 import com.konstantin.kustov.movie.features.movies.domain.MovieEntity
 import com.konstantin.kustov.movie.features.movies.presentation.recyclerview.MovieView
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class MoviesViewModel
 @Inject constructor(
     private val getMovies: GetMovies

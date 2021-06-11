@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import com.konstantin.kustov.movie.core.platform.BaseViewModel
 import com.konstantin.kustov.movie.features.details.domain.GetMovieDetails
 import com.konstantin.kustov.movie.features.details.domain.MovieDetailsEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class MovieDetailsViewModel
 @Inject constructor(
     private val getMovieDetails: GetMovieDetails

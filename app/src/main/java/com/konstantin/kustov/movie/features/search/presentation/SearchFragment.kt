@@ -5,17 +5,19 @@ import android.view.View
 import android.widget.RadioGroup
 import androidx.annotation.StringRes
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import com.konstantin.kustov.movie.R
 import com.konstantin.kustov.movie.core.exception.Failure
 import com.konstantin.kustov.movie.core.extension.appContext
 import com.konstantin.kustov.movie.core.extension.failure
 import com.konstantin.kustov.movie.core.extension.observe
-import com.konstantin.kustov.movie.core.extension.viewModel
 import com.konstantin.kustov.movie.core.navigation.Navigator
 import com.konstantin.kustov.movie.core.platform.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SearchFragment : BaseFragment() {
 
     companion object {
@@ -30,16 +32,15 @@ class SearchFragment : BaseFragment() {
     @Inject
     lateinit var navigator: Navigator
 
-    private lateinit var searchViewModel: SearchViewModel
+    private val searchViewModel: SearchViewModel by viewModels()
 
     override fun layoutId() = R.layout.fragment_search
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appComponent.inject(this)
         setHasOptionsMenu(true)
 
-        searchViewModel = viewModel(viewModelFactory) {
+        with(searchViewModel) {
             observe(settingSearchOptions, ::handleSearchOptionsUpdate)
             failure(failure, ::handleFailure)
         }

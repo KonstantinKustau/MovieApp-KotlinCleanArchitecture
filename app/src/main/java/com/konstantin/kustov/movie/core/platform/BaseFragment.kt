@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.konstantin.kustov.movie.AndroidApplication
-import com.konstantin.kustov.movie.core.di.ApplicationComponent
 import com.konstantin.kustov.movie.core.extension.appContext
 import com.konstantin.kustov.movie.R.color
 import com.konstantin.kustov.movie.core.extension.viewContainer
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 /**
@@ -21,16 +21,10 @@ import javax.inject.Inject
  *
  * @see Fragment
  */
+@AndroidEntryPoint
 abstract class BaseFragment : Fragment() {
 
     abstract fun layoutId(): Int
-
-    val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
-        (activity?.application as AndroidApplication).appComponent
-    }
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreateView(
         inflater: LayoutInflater,
